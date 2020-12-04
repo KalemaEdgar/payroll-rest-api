@@ -21,7 +21,7 @@
 						"employees"
 					]
 				},
-				"description": "Make an API call to retrieve all the employees in the company\r\n\r\n`$ curl -v localhost:8080/employees`"
+				"description": "Make an API call to retrieve all the employees in the company\r\n\r\nTo make the output more user friendly, pipe the curl output to json_pp to make your JSON pretty.\r\n\r\n`$ curl -v localhost:8080/employees | json_pp`"
 			},
 			"response": [
 				{
@@ -88,9 +88,55 @@
 						"1"
 					]
 				},
-				"description": "Make an API call to retrieve all the employees in the company\r\n\r\n`$ curl -v localhost:8080/employees/1`"
+				"description": "Make an API call to retrieve all the employees in the company\r\n\r\nTo make the output more user friendly, pipe the curl output to json_pp to make your JSON pretty.\r\n\r\n`$ curl -v localhost:8080/employees/1 | json_pp`"
 			},
 			"response": [
+				{
+					"name": "Query an employee details with links due to HATEOAS",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/employees/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"employees",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/hal+json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 04 Dec 2020 00:29:17 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"name\": \"Kalema Edgar\",\n    \"role\": \"CIO\",\n    \"_links\": {\n        \"self\": {\n            \"href\": \"http://localhost:8080/employees/1\"\n        },\n        \"employees\": {\n            \"href\": \"http://localhost:8080/employees\"\n        }\n    }\n}"
+				},
 				{
 					"name": "Query an employee's details",
 					"originalRequest": {

@@ -2,6 +2,7 @@ package com.payroll.resources;
 
 import com.payroll.Employee;
 import com.payroll.repository.EmployeeRepository;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController // indicates that the data returned by each method will be written straight into the response body instead of rendering a template.
 public class EmployeeController {
@@ -33,10 +37,16 @@ public class EmployeeController {
     }
 
     // Single item
+    // EntityModel<T> is a generic container from Spring HATEOAS that includes not only the data but a collection of links.
     @GetMapping("/employees/{id}")
-    Employee one(@PathVariable Long id) {
-        return repository.findById(id)
+    EntityModel<Employee> one(@PathVariable Long id) {
+        Employee employee = repository.findById(id)
                 .orElseThrow(() -> new EmployeeNotFoundException(id));
+
+        return EntityModel.of(employee,
+                linkTo(methodOn(EmployeeController.class).one(id)).withSelfRel(), // Spring HATEOAS builds a link to the EmployeeController's one() method, and flag it as a self link.
+                linkTo(methodOn(EmployeeController.class).all()).withRel("employees") // asks Spring HATEOAS to build a link to the aggregate root, all(), and call it "employees".
+        );
     }
 
     @PutMapping("/employees/{id}")
