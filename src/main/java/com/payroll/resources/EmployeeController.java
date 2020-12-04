@@ -2,6 +2,7 @@ package com.payroll.resources;
 
 import com.payroll.Employee;
 import com.payroll.repository.EmployeeRepository;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -27,8 +29,15 @@ public class EmployeeController {
 
     // Aggregate root
     @GetMapping("/employees")
-    List<Employee> all() {
-        return repository.findAll();
+    CollectionModel<EntityModel<Employee>> all() { // CollectionModel is another Spring HATEOAS container aimed at encapsulating collections of employee resources. It includes links
+        List<EntityModel<Employee>> employees = repository.findAll().stream()
+                .map(employee -> EntityModel.of(employee,
+                        linkTo(methodOn(EmployeeController.class).one(employee.getId())).withSelfRel(),
+                        linkTo(methodOn(EmployeeController.class).all()).withRel("employees")))
+                .collect(Collectors.toList());
+
+        return CollectionModel.of(employees,
+                linkTo(methodOn(EmployeeController.class).all()).withSelfRel());
     }
 
     @PostMapping("/employees")

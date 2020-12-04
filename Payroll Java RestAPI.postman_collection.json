@@ -25,6 +25,51 @@
 			},
 			"response": [
 				{
+					"name": "Retrieve all employees in a more restful format following HATEOAS principles",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/employees",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"employees"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/hal+json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 04 Dec 2020 00:46:39 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_embedded\": {\n        \"employeeList\": [\n            {\n                \"id\": 1,\n                \"name\": \"Kalema Edgar\",\n                \"role\": \"CIO\",\n                \"_links\": {\n                    \"self\": {\n                        \"href\": \"http://localhost:8080/employees/1\"\n                    },\n                    \"employees\": {\n                        \"href\": \"http://localhost:8080/employees\"\n                    }\n                }\n            },\n            {\n                \"id\": 2,\n                \"name\": \"Regina Kalema\",\n                \"role\": \"Chief Executive\",\n                \"_links\": {\n                    \"self\": {\n                        \"href\": \"http://localhost:8080/employees/2\"\n                    },\n                    \"employees\": {\n                        \"href\": \"http://localhost:8080/employees\"\n                    }\n                }\n            }\n        ]\n    },\n    \"_links\": {\n        \"self\": {\n            \"href\": \"http://localhost:8080/employees\"\n        }\n    }\n}"
+				},
+				{
 					"name": "Retrieve all employees",
 					"originalRequest": {
 						"method": "GET",
