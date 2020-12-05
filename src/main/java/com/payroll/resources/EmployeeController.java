@@ -2,8 +2,11 @@ package com.payroll.resources;
 
 import com.payroll.Employee;
 import com.payroll.repository.EmployeeRepository;
+import org.apache.coyote.Response;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.IanaLinkRelations;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,8 +43,18 @@ public class EmployeeController {
     }
 
     @PostMapping("/employees")
-    Employee newEmployee(@RequestBody Employee newEmployee) {
-        return repository.save(newEmployee);
+    ResponseEntity<?> newEmployee(@RequestBody Employee newEmployee) {
+        /**
+         * The new Employee object is saved as before. But the resulting object is wrapped using the EmployeeModelAssembler.
+         * Spring MVC’s ResponseEntity is used to create an HTTP 201 Created status message.
+         * This type of response typically includes a Location response header, and we use the URI derived from the model’s self-related link.
+         * A hypermedia powered client could opt to "surf" to this new resource and proceed to interact with it.
+         * Additionally, return the model-based version of the saved object.
+         */
+        EntityModel<Employee> entityModel = assembler.toModel(repository.save(newEmployee));
+        return ResponseEntity //
+                .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri()) //
+                .body(entityModel);
     }
 
     // Single item
@@ -54,21 +67,35 @@ public class EmployeeController {
     }
 
     @PutMapping("/employees/{id}")
-    Employee replaceEmployee(@RequestBody Employee newEmployee, @PathVariable Long id) {
-        return repository.findById(id)
+    ResponseEntity<?> replaceEmployee(@RequestBody Employee newEmployee, @PathVariable Long id) {
+        /**
+         * The Employee object built from the save() operation is then wrapped using the EmployeeModelAssembler into an EntityModel<Employee> object.
+         * Using the getRequiredLink() method, you can retrieve the Link created by the EmployeeModelAssembler with a SELF rel.
+         * This method returns a Link which must be turned into a URI with the toUri method.
+         * Since we want a more detailed HTTP response code than 200 OK, we will use Spring MVC’s ResponseEntity wrapper.
+         * It has a handy static method created() where we can plug in the resource’s URI.
+         * It comes pre-loaded with a Location response header
+         */
+        Employee updatedEmployee = repository.findById(id) //
                 .map(employee -> {
                     employee.setName(newEmployee.getName());
                     employee.setRole(newEmployee.getRole());
                     return repository.save(employee);
-                })
+                }) //
                 .orElseGet(() -> {
                     newEmployee.setId(id);
                     return repository.save(newEmployee);
                 });
+
+        EntityModel<Employee> entityModel = assembler.toModel(updatedEmployee);
+        return ResponseEntity //
+                .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri()) //
+                .body(entityModel);
     }
 
     @DeleteMapping("/employees/{id}")
-    void deleteEmployee(@PathVariable Long id) {
+    ResponseEntity<?> deleteEmployee(@PathVariable Long id) {
         repository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
