@@ -23,21 +23,20 @@ public class EmployeeController {
 
     // An EmployeeRepository is injected into the controller using the constructor
     private final EmployeeRepository repository;
-    public EmployeeController(EmployeeRepository repository) {
+    private final EmployeeModelAssembler assembler;
+
+    public EmployeeController(EmployeeRepository repository, EmployeeModelAssembler assembler) {
         this.repository = repository;
+        this.assembler = assembler;
     }
 
     // Aggregate root
     @GetMapping("/employees")
     CollectionModel<EntityModel<Employee>> all() { // CollectionModel is another Spring HATEOAS container aimed at encapsulating collections of employee resources. It includes links
-        List<EntityModel<Employee>> employees = repository.findAll().stream()
-                .map(employee -> EntityModel.of(employee,
-                        linkTo(methodOn(EmployeeController.class).one(employee.getId())).withSelfRel(),
-                        linkTo(methodOn(EmployeeController.class).all()).withRel("employees")))
-                .collect(Collectors.toList());
-
+        List<EntityModel<Employee>> employees = repository.findAll().stream().map(assembler::toModel).collect(Collectors.toList());
         return CollectionModel.of(employees,
-                linkTo(methodOn(EmployeeController.class).all()).withSelfRel());
+                linkTo(methodOn(EmployeeController.class).all()).withSelfRel()
+        );
     }
 
     @PostMapping("/employees")
@@ -51,11 +50,7 @@ public class EmployeeController {
     EntityModel<Employee> one(@PathVariable Long id) {
         Employee employee = repository.findById(id)
                 .orElseThrow(() -> new EmployeeNotFoundException(id));
-
-        return EntityModel.of(employee,
-                linkTo(methodOn(EmployeeController.class).one(id)).withSelfRel(), // Spring HATEOAS builds a link to the EmployeeController's one() method, and flag it as a self link.
-                linkTo(methodOn(EmployeeController.class).all()).withRel("employees") // asks Spring HATEOAS to build a link to the aggregate root, all(), and call it "employees".
-        );
+        return assembler.toModel(employee);
     }
 
     @PutMapping("/employees/{id}")
