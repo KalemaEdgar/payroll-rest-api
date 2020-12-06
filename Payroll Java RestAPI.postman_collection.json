@@ -6,72 +6,11 @@
 	},
 	"item": [
 		{
-			"name": "Retrieve all employees",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/employees",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"employees"
-					]
-				},
-				"description": "Make an API call to retrieve all the employees in the company\r\n\r\nTo make the output more user friendly, pipe the curl output to json_pp to make your JSON pretty.\r\n\r\n`$ curl -v localhost:8080/employees | json_pp`"
-			},
-			"response": [
-				{
-					"name": "Retrieve all employees in a more restful format following HATEOAS principles",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/employees",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"employees"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/hal+json"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Fri, 04 Dec 2020 00:46:39 GMT"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=60"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"_embedded\": {\n        \"employeeList\": [\n            {\n                \"id\": 1,\n                \"name\": \"Kalema Edgar\",\n                \"role\": \"CIO\",\n                \"_links\": {\n                    \"self\": {\n                        \"href\": \"http://localhost:8080/employees/1\"\n                    },\n                    \"employees\": {\n                        \"href\": \"http://localhost:8080/employees\"\n                    }\n                }\n            },\n            {\n                \"id\": 2,\n                \"name\": \"Regina Kalema\",\n                \"role\": \"Chief Executive\",\n                \"_links\": {\n                    \"self\": {\n                        \"href\": \"http://localhost:8080/employees/2\"\n                    },\n                    \"employees\": {\n                        \"href\": \"http://localhost:8080/employees\"\n                    }\n                }\n            }\n        ]\n    },\n    \"_links\": {\n        \"self\": {\n            \"href\": \"http://localhost:8080/employees\"\n        }\n    }\n}"
-				},
+			"name": "Employees",
+			"item": [
 				{
 					"name": "Retrieve all employees",
-					"originalRequest": {
+					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -84,65 +23,199 @@
 							"path": [
 								"employees"
 							]
-						}
+						},
+						"description": "Make an API call to retrieve all the employees in the company\r\n\r\nTo make the output more user friendly, pipe the curl output to json_pp to make your JSON pretty.\r\n\r\n`$ curl -v localhost:8080/employees | json_pp`"
 					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
+					"response": [
 						{
-							"key": "Content-Type",
-							"value": "application/json"
+							"name": "Retrieve all employees in a more restful format following HATEOAS principles",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/employees",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"employees"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/hal+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 04 Dec 2020 00:46:39 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_embedded\": {\n        \"employeeList\": [\n            {\n                \"id\": 1,\n                \"name\": \"Kalema Edgar\",\n                \"role\": \"CIO\",\n                \"_links\": {\n                    \"self\": {\n                        \"href\": \"http://localhost:8080/employees/1\"\n                    },\n                    \"employees\": {\n                        \"href\": \"http://localhost:8080/employees\"\n                    }\n                }\n            },\n            {\n                \"id\": 2,\n                \"name\": \"Regina Kalema\",\n                \"role\": \"Chief Executive\",\n                \"_links\": {\n                    \"self\": {\n                        \"href\": \"http://localhost:8080/employees/2\"\n                    },\n                    \"employees\": {\n                        \"href\": \"http://localhost:8080/employees\"\n                    }\n                }\n            }\n        ]\n    },\n    \"_links\": {\n        \"self\": {\n            \"href\": \"http://localhost:8080/employees\"\n        }\n    }\n}"
 						},
 						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
+							"name": "Retrieve all employees with versioning of the name embedded",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/employees",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"employees"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/hal+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 05 Dec 2020 21:25:17 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_embedded\": {\n        \"employeeList\": [\n            {\n                \"id\": 1,\n                \"firstName\": \"Kalema\",\n                \"lastName\": \"Edgar\",\n                \"role\": \"CIO\",\n                \"name\": \"Kalema Edgar\",\n                \"_links\": {\n                    \"self\": {\n                        \"href\": \"http://localhost:8080/employees/1\"\n                    },\n                    \"employees\": {\n                        \"href\": \"http://localhost:8080/employees\"\n                    }\n                }\n            },\n            {\n                \"id\": 2,\n                \"firstName\": \"Josiah\",\n                \"lastName\": \"Kalema\",\n                \"role\": \"Director\",\n                \"name\": \"Josiah Kalema\",\n                \"_links\": {\n                    \"self\": {\n                        \"href\": \"http://localhost:8080/employees/2\"\n                    },\n                    \"employees\": {\n                        \"href\": \"http://localhost:8080/employees\"\n                    }\n                }\n            }\n        ]\n    },\n    \"_links\": {\n        \"self\": {\n            \"href\": \"http://localhost:8080/employees\"\n        }\n    }\n}"
 						},
 						{
-							"key": "Date",
-							"value": "Thu, 03 Dec 2020 23:38:26 GMT"
+							"name": "Retrieve all employees with name parameter versioning embedded",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/employees",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"employees"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/hal+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 05 Dec 2020 21:25:17 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_embedded\": {\n        \"employeeList\": [\n            {\n                \"id\": 1,\n                \"firstName\": \"Kalema\",\n                \"lastName\": \"Edgar\",\n                \"role\": \"CIO\",\n                \"name\": \"Kalema Edgar\",\n                \"_links\": {\n                    \"self\": {\n                        \"href\": \"http://localhost:8080/employees/1\"\n                    },\n                    \"employees\": {\n                        \"href\": \"http://localhost:8080/employees\"\n                    }\n                }\n            },\n            {\n                \"id\": 2,\n                \"firstName\": \"Josiah\",\n                \"lastName\": \"Kalema\",\n                \"role\": \"Director\",\n                \"name\": \"Josiah Kalema\",\n                \"_links\": {\n                    \"self\": {\n                        \"href\": \"http://localhost:8080/employees/2\"\n                    },\n                    \"employees\": {\n                        \"href\": \"http://localhost:8080/employees\"\n                    }\n                }\n            }\n        ]\n    },\n    \"_links\": {\n        \"self\": {\n            \"href\": \"http://localhost:8080/employees\"\n        }\n    }\n}"
 						},
 						{
-							"key": "Keep-Alive",
-							"value": "timeout=60"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
+							"name": "Retrieve all employees",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/employees",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"employees"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Dec 2020 23:38:26 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Kalema Edgar\",\n        \"role\": \"CIO\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Regina Kalema\",\n        \"role\": \"Chief Executive\"\n    }\n]"
 						}
-					],
-					"cookie": [],
-					"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Kalema Edgar\",\n        \"role\": \"CIO\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Regina Kalema\",\n        \"role\": \"Chief Executive\"\n    }\n]"
-				}
-			]
-		},
-		{
-			"name": "Query an employee details",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/employees/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"employees",
-						"1"
 					]
 				},
-				"description": "Make an API call to retrieve all the employees in the company\r\n\r\nTo make the output more user friendly, pipe the curl output to json_pp to make your JSON pretty.\r\n\r\n`$ curl -v localhost:8080/employees/1 | json_pp`"
-			},
-			"response": [
 				{
-					"name": "Query an employee details with links due to HATEOAS",
-					"originalRequest": {
+					"name": "Query an employee details",
+					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/employees/1",
+							"raw": "http://localhost:8080/employees/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -150,109 +223,109 @@
 							"port": "8080",
 							"path": [
 								"employees",
-								"1"
+								"2"
 							]
-						}
+						},
+						"description": "Make an API call to retrieve all the employees in the company\r\n\r\nTo make the output more user friendly, pipe the curl output to json_pp to make your JSON pretty.\r\n\r\n`$ curl -v localhost:8080/employees/1 | json_pp`"
 					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
+					"response": [
 						{
-							"key": "Content-Type",
-							"value": "application/hal+json"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Fri, 04 Dec 2020 00:29:17 GMT"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=60"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"id\": 1,\n    \"name\": \"Kalema Edgar\",\n    \"role\": \"CIO\",\n    \"_links\": {\n        \"self\": {\n            \"href\": \"http://localhost:8080/employees/1\"\n        },\n        \"employees\": {\n            \"href\": \"http://localhost:8080/employees\"\n        }\n    }\n}"
-				},
-				{
-					"name": "Query an employee's details",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/employees/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
+							"name": "Query an employee details with links due to HATEOAS",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/employees/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"employees",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/hal+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 04 Dec 2020 00:29:17 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
 							],
-							"port": "8080",
-							"path": [
-								"employees",
-								"1"
-							]
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"Kalema Edgar\",\n    \"role\": \"CIO\",\n    \"_links\": {\n        \"self\": {\n            \"href\": \"http://localhost:8080/employees/1\"\n        },\n        \"employees\": {\n            \"href\": \"http://localhost:8080/employees\"\n        }\n    }\n}"
+						},
+						{
+							"name": "Query an employee's details",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/employees/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"employees",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Dec 2020 23:41:05 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"Kalema Edgar\",\n    \"role\": \"CIO\"\n}"
 						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 03 Dec 2020 23:41:05 GMT"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=60"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"id\": 1,\n    \"name\": \"Kalema Edgar\",\n    \"role\": \"CIO\"\n}"
-				}
-			]
-		},
-		{
-			"name": "Query a employee who doesnot exist",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/employees/1111",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"employees",
-						"1111"
 					]
 				},
-				"description": "Make an API call to retrieve all the employees in the company\r\n\r\n`$ curl -v localhost:8080/employees/1111`"
-			},
-			"response": [
 				{
-					"name": "Query details for an employee who does not exist",
-					"originalRequest": {
+					"name": "Query a employee who doesnot exist",
+					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -266,74 +339,66 @@
 								"employees",
 								"1111"
 							]
-						}
+						},
+						"description": "Make an API call to retrieve all the employees in the company\r\n\r\n`$ curl -v localhost:8080/employees/1111`"
 					},
-					"status": "Not Found",
-					"code": 404,
-					"_postman_previewlanguage": "plain",
-					"header": [
+					"response": [
 						{
-							"key": "Content-Type",
-							"value": "text/plain;charset=UTF-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "36"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 03 Dec 2020 23:40:33 GMT"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=60"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
+							"name": "Query details for an employee who does not exist",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/employees/1111",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"employees",
+										"1111"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "36"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Dec 2020 23:40:33 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Could not find employee with id 1111"
 						}
-					],
-					"cookie": [],
-					"body": "Could not find employee with id 1111"
-				}
-			]
-		},
-		{
-			"name": "Create an employee",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Josephine Balungi\",\r\n    \"role\": \"Managing Director\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/employees",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"employees"
 					]
 				},
-				"description": "Adding or creating a new employee in the system\r\n\r\n`$ curl -X POST localhost:8080/employees -H 'Content-type:application/json' -d '{\"name\": \"Samwise Gamgee\", \"role\": \"gardener\"}'`"
-			},
-			"response": [
 				{
 					"name": "Create an employee",
-					"originalRequest": {
+					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Josephine Balungi\",\r\n    \"role\": \"Managing Director\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Kalema James\",\r\n    \"role\": \"Founder\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -350,70 +415,127 @@
 							"path": [
 								"employees"
 							]
-						}
+						},
+						"description": "Adding or creating a new employee in the system\r\n\r\n```$ curl -v -X POST localhost:8080/employees -H 'Content-type:application/json' -d '{\"name\": \"Samwise Gamgee\", \"role\": \"gardener\"}'```"
 					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
+					"response": [
 						{
-							"key": "Content-Type",
-							"value": "application/json"
+							"name": "Create an employee with HAL embedded",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Kalema James\",\r\n    \"role\": \"Founder\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/employees",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"employees"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Location",
+									"value": "http://localhost:8080/employees/3"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/hal+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 05 Dec 2020 21:16:14 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"firstName\": \"Kalema\",\n    \"lastName\": \"James\",\n    \"role\": \"Founder\",\n    \"name\": \"Kalema James\",\n    \"_links\": {\n        \"self\": {\n            \"href\": \"http://localhost:8080/employees/3\"\n        },\n        \"employees\": {\n            \"href\": \"http://localhost:8080/employees\"\n        }\n    }\n}"
 						},
 						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 03 Dec 2020 23:44:36 GMT"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=60"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
+							"name": "Create an employee",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Josephine Balungi\",\r\n    \"role\": \"Managing Director\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/employees",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"employees"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Dec 2020 23:44:36 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"name\": \"Josephine Balungi\",\n    \"role\": \"Managing Director\"\n}"
 						}
-					],
-					"cookie": [],
-					"body": "{\n    \"id\": 3,\n    \"name\": \"Josephine Balungi\",\n    \"role\": \"Managing Director\"\n}"
-				}
-			]
-		},
-		{
-			"name": "Replace the employee details",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Josiah Kalema\",\r\n    \"role\": \"Director\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/employees/4",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"employees",
-						"4"
 					]
 				},
-				"description": "Replace the details of an already existing employee.\r\n\r\nIn scenarios where the name was NOT provided, it would instead get nulled out cause of the way we built our service\r\n\r\n`$ curl -X PUT localhost:8080/employees/3 -H 'Content-type:application/json' -d '{\"name\": \"Samwise Gamgee\", \"role\": \"ring bearer\"}'`"
-			},
-			"response": [
 				{
-					"name": "Amend an employee's details",
-					"originalRequest": {
+					"name": "Replace the employee details",
+					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -426,7 +548,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/employees/4",
+							"raw": "http://localhost:8080/employees/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -434,67 +556,135 @@
 							"port": "8080",
 							"path": [
 								"employees",
-								"4"
+								"2"
 							]
-						}
+						},
+						"description": "Replace the details of an already existing employee.\r\n\r\nIn scenarios where the name was NOT provided, it would instead get nulled out cause of the way we built our service\r\n\r\n`$ curl -X PUT localhost:8080/employees/3 -H 'Content-type:application/json' -d '{\"name\": \"Samwise Gamgee\", \"role\": \"ring bearer\"}'`"
 					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
+					"response": [
 						{
-							"key": "Content-Type",
-							"value": "application/json"
+							"name": "Replace the employee details with HAL embedded",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Josiah Kalema\",\r\n    \"role\": \"Director\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/employees/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"employees",
+										"2"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Location",
+									"value": "http://localhost:8080/employees/2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/hal+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 05 Dec 2020 21:24:21 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"firstName\": \"Josiah\",\n    \"lastName\": \"Kalema\",\n    \"role\": \"Director\",\n    \"name\": \"Josiah Kalema\",\n    \"_links\": {\n        \"self\": {\n            \"href\": \"http://localhost:8080/employees/2\"\n        },\n        \"employees\": {\n            \"href\": \"http://localhost:8080/employees\"\n        }\n    }\n}"
 						},
 						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 03 Dec 2020 23:49:51 GMT"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=60"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
+							"name": "Amend an employee's details",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Josiah Kalema\",\r\n    \"role\": \"Director\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/employees/4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"employees",
+										"4"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Dec 2020 23:49:51 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 4,\n    \"name\": \"Josiah Kalema\",\n    \"role\": \"Director\"\n}"
 						}
-					],
-					"cookie": [],
-					"body": "{\n    \"id\": 4,\n    \"name\": \"Josiah Kalema\",\n    \"role\": \"Director\"\n}"
-				}
-			]
-		},
-		{
-			"name": "Delete an employee details",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/employees/5",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"employees",
-						"5"
 					]
 				},
-				"description": "Delete an employee from the system\r\n\r\n```\r\n$ curl -X DELETE localhost:8080/employees/5\r\n$ curl localhost:8080/employees/5\r\nCould not find employee 5\r\n```"
-			},
-			"response": [
 				{
 					"name": "Delete an employee details",
-					"originalRequest": {
+					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/employees/5",
+							"raw": "http://localhost:8080/employees/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -502,35 +692,561 @@
 							"port": "8080",
 							"path": [
 								"employees",
-								"5"
+								"1"
 							]
-						}
+						},
+						"description": "Delete an employee from the system\r\n\r\n```\r\n$ curl -X DELETE localhost:8080/employees/5\r\n$ curl localhost:8080/employees/5\r\nCould not find employee 5\r\n```"
 					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "plain",
-					"header": [
+					"response": [
 						{
-							"key": "Content-Length",
-							"value": "0"
+							"name": "Delete an employee details",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/employees/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"employees",
+										"5"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Dec 2020 23:59:59 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
 						},
 						{
-							"key": "Date",
-							"value": "Thu, 03 Dec 2020 23:59:59 GMT"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=60"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
+							"name": "Delete an employee details with HAL embedded",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/employees/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"employees",
+										"1"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 05 Dec 2020 21:29:13 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
 						}
-					],
-					"cookie": [],
-					"body": null
+					]
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "View all orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orders"
+							]
+						},
+						"description": "View all the orders in the system. Pay attention to the status links for cancelled or completed sent along the response\r\n\r\n`$ curl -v http://localhost:8080/orders`\r\n\r\nThis HAL document immediately shows different links for each order, based upon its present state.\r\n\r\nThe first order, being COMPLETED only has the navigational links. The state transition links are not shown.\r\n\r\nThe second order, being IN_PROGRESS additionally has the cancel link as well as the complete link."
+					},
+					"response": [
+						{
+							"name": "View all orders",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/hal+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Dec 2020 16:25:10 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_embedded\": {\n        \"orderList\": [\n            {\n                \"id\": 3,\n                \"description\": \"MacBook Pro\",\n                \"status\": \"COMPLETED\",\n                \"_links\": {\n                    \"self\": {\n                        \"href\": \"http://localhost:8080/orders/3\"\n                    },\n                    \"orders\": {\n                        \"href\": \"http://localhost:8080/orders\"\n                    }\n                }\n            },\n            {\n                \"id\": 4,\n                \"description\": \"iPhone\",\n                \"status\": \"IN_PROGRESS\",\n                \"_links\": {\n                    \"self\": {\n                        \"href\": \"http://localhost:8080/orders/4\"\n                    },\n                    \"orders\": {\n                        \"href\": \"http://localhost:8080/orders\"\n                    },\n                    \"cancel\": {\n                        \"href\": \"http://localhost:8080/orders/4/cancel\"\n                    },\n                    \"complete\": {\n                        \"href\": \"http://localhost:8080/orders/4/complete\"\n                    }\n                }\n            }\n        ]\n    },\n    \"_links\": {\n        \"self\": {\n            \"href\": \"http://localhost:8080/orders\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "View details of a single order which is under progress",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/orders/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orders",
+								"1"
+							]
+						},
+						"description": "Notice how the cancel and completed links are sent back as part of the response.\r\n\r\nOnly IN_PROGRESS states can be cancelled or completed"
+					},
+					"response": [
+						{
+							"name": "View details of a single order",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/orders/4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"orders",
+										"4"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/hal+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Dec 2020 16:27:02 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 4,\n    \"description\": \"iPhone\",\n    \"status\": \"IN_PROGRESS\",\n    \"_links\": {\n        \"self\": {\n            \"href\": \"http://localhost:8080/orders/4\"\n        },\n        \"orders\": {\n            \"href\": \"http://localhost:8080/orders\"\n        },\n        \"cancel\": {\n            \"href\": \"http://localhost:8080/orders/4/cancel\"\n        },\n        \"complete\": {\n            \"href\": \"http://localhost:8080/orders/4/complete\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "View details of a completed order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/orders/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orders",
+								"3"
+							]
+						},
+						"description": "Notice how the cancel and completed links are not sent back as part of the response.\r\n\r\nThat is because they already completed the states. Only IN_PROGRESS states can be cancelled or completed"
+					},
+					"response": [
+						{
+							"name": "View details of a completed order",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/orders/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"orders",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/hal+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Dec 2020 16:27:56 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"description\": \"MacBook Pro\",\n    \"status\": \"COMPLETED\",\n    \"_links\": {\n        \"self\": {\n            \"href\": \"http://localhost:8080/orders/3\"\n        },\n        \"orders\": {\n            \"href\": \"http://localhost:8080/orders\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Cancel an order (that is under progress)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/orders/4/cancel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orders",
+								"4",
+								"cancel"
+							]
+						},
+						"description": "`$ curl -v -X DELETE http://localhost:8080/orders/4/cancel`\r\n\r\nThis response shows an HTTP 200 status code indicating it was successful.\r\n\r\nThe response HAL document shows that order in its new state (CANCELLED). And the state-altering links gone."
+					},
+					"response": [
+						{
+							"name": "Cancel an order (that is under progress)",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/orders/4/cancel",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"orders",
+										"4",
+										"cancel"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/hal+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Dec 2020 16:33:48 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 4,\n    \"description\": \"iPhone\",\n    \"status\": \"CANCELLED\",\n    \"_links\": {\n        \"self\": {\n            \"href\": \"http://localhost:8080/orders/4\"\n        },\n        \"orders\": {\n            \"href\": \"http://localhost:8080/orders\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Cancel an already cancelled order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/orders/4/cancel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orders",
+								"4",
+								"cancel"
+							]
+						},
+						"description": "`$ curl -v -X DELETE http://localhost:8080/orders/4/cancel`\r\n\r\nYou see an HTTP 405 Method Not Allowed response.\r\n\r\nDELETE has become an invalid operation.\r\n\r\nThe Problem response object clearly indicates that you aren’t allowed to \"cancel\" an order already in the \"CANCELLED\" status."
+					},
+					"response": [
+						{
+							"name": "Cancel an already cancelled order",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/orders/4/cancel",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"orders",
+										"4",
+										"cancel"
+									]
+								}
+							},
+							"status": "Method Not Allowed",
+							"code": 405,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/problem+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Dec 2020 16:35:10 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"Method not allowed\",\n    \"detail\": \"You can't cancel an order that is in the CANCELLED status\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Complete an already cancelled order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/orders/4/complete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orders",
+								"4",
+								"complete"
+							]
+						},
+						"description": "`$ curl -v -X PUT localhost:8080/orders/4/complete`\r\n\r\nYou see an HTTP 405 Method Not Allowed response.\r\n\r\nDELETE has become an invalid operation.\r\n\r\nThe Problem response object clearly indicates that you aren’t allowed to \"complete\" an order already in the \"CANCELLED\" status."
+					},
+					"response": [
+						{
+							"name": "Complete an already cancelled order",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/orders/4/complete",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"orders",
+										"4",
+										"complete"
+									]
+								}
+							},
+							"status": "Method Not Allowed",
+							"code": 405,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/problem+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Dec 2020 16:37:37 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"Method not allowed\",\n    \"detail\": \"You can't complete an order that is in the CANCELLED status\"\n}"
+						},
+						{
+							"name": "Cancel an already cancelled order",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/orders/4/cancel",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"orders",
+										"4",
+										"cancel"
+									]
+								}
+							},
+							"status": "Method Not Allowed",
+							"code": 405,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/problem+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Dec 2020 16:35:10 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"Method not allowed\",\n    \"detail\": \"You can't cancel an order that is in the CANCELLED status\"\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}
