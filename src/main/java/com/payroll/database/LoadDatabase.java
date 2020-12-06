@@ -8,8 +8,8 @@ package com.payroll.database;
  **** Using the repository, it will create two entities and store them.
  */
 
-import com.payroll.Employee;
-import com.payroll.Order;
+import com.payroll.model.Employee;
+import com.payroll.model.Order;
 import com.payroll.repository.EmployeeRepository;
 import com.payroll.repository.OrderRepository;
 import com.payroll.resources.Status;

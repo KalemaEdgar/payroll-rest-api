@@ -1,4 +1,4 @@
-package com.payroll;
+package com.payroll.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

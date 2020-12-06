@@ -1,8 +1,10 @@
-package com.payroll.resources;
+package com.payroll.controller;
 
-import com.payroll.Order;
+import com.payroll.model.Order;
 import com.payroll.repository.OrderRepository;
-import com.payroll.resources.exceptions.OrderNotFoundException;
+import com.payroll.exception.OrderNotFoundException;
+import com.payroll.resources.OrderModelAssembler;
+import com.payroll.resources.Status;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.MediaTypes;
@@ -29,7 +31,7 @@ public class OrderController {
     }
 
     @GetMapping("/orders")
-    CollectionModel<EntityModel<Order>> all() {
+    public CollectionModel<EntityModel<Order>> all() {
         List<EntityModel<Order>> orders = orderRepository.findAll().stream() //
                 .map(assembler::toModel) //
                 .collect(Collectors.toList());
@@ -38,7 +40,7 @@ public class OrderController {
     }
 
     @GetMapping("/orders/{id}")
-    EntityModel<Order> one(@PathVariable Long id) {
+    public EntityModel<Order> one(@PathVariable Long id) {
         Order order = orderRepository.findById(id) //
                 .orElseThrow(() -> new OrderNotFoundException(id));
         return assembler.toModel(order);
@@ -54,7 +56,7 @@ public class OrderController {
     }
 
     @DeleteMapping("/orders/{id}/cancel")
-    ResponseEntity<?> cancel(@PathVariable Long id) {
+    public ResponseEntity<?> cancel(@PathVariable Long id) {
         Order order = orderRepository.findById(id).orElseThrow(() -> new OrderNotFoundException(id));
 
         if (order.getStatus() == Status.IN_PROGRESS) {
@@ -71,7 +73,7 @@ public class OrderController {
     }
 
     @PutMapping("/orders/{id}/complete")
-    ResponseEntity<?> complete(@PathVariable Long id) {
+    public ResponseEntity<?> complete(@PathVariable Long id) {
         Order order = orderRepository.findById(id) //
                 .orElseThrow(() -> new OrderNotFoundException(id));
 

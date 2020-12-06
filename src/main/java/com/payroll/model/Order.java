@@ -1,4 +1,4 @@
-package com.payroll;
+package com.payroll.model;
 
 import com.payroll.resources.Status;
 import javax.persistence.Entity;

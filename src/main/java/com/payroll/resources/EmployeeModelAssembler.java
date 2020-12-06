@@ -1,6 +1,7 @@
 package com.payroll.resources;
 
-import com.payroll.Employee;
+import com.payroll.controller.EmployeeController;
+import com.payroll.model.Employee;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;

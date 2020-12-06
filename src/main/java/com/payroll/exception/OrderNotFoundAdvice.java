@@ -1,4 +1,4 @@
-package com.payroll.resources.exceptions;
+package com.payroll.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

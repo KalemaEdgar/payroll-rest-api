@@ -1,8 +1,9 @@
-package com.payroll.resources;
+package com.payroll.controller;
 
-import com.payroll.Employee;
+import com.payroll.model.Employee;
 import com.payroll.repository.EmployeeRepository;
-import com.payroll.resources.exceptions.EmployeeNotFoundException;
+import com.payroll.exception.EmployeeNotFoundException;
+import com.payroll.resources.EmployeeModelAssembler;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.IanaLinkRelations;
@@ -21,7 +22,12 @@ import java.util.stream.Collectors;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-@RestController // indicates that the data returned by each method will be written straight into the response body instead of rendering a template.
+/**
+ * @RestController annotation tells Spring that this code describes an endpoint that should be made available over the web.
+ * @RestController indicates that the data returned by each method will be written straight into the response body instead of rendering a template.
+ *
+*/
+@RestController
 public class EmployeeController {
 
     // An EmployeeRepository is injected into the controller using the constructor
@@ -34,8 +40,8 @@ public class EmployeeController {
     }
 
     // Aggregate root
-    @GetMapping("/employees")
-    CollectionModel<EntityModel<Employee>> all() { // CollectionModel is another Spring HATEOAS container aimed at encapsulating collections of employee resources. It includes links
+    @GetMapping("/employees") // tells Spring to use our all() method to answer requests that get sent to the http://localhost:8080/employees
+    public CollectionModel<EntityModel<Employee>> all() { // CollectionModel is another Spring HATEOAS container aimed at encapsulating collections of employee resources. It includes links
         List<EntityModel<Employee>> employees = repository.findAll().stream().map(assembler::toModel).collect(Collectors.toList());
         return CollectionModel.of(employees,
                 linkTo(methodOn(EmployeeController.class).all()).withSelfRel()
@@ -60,7 +66,7 @@ public class EmployeeController {
     // Single item
     // EntityModel<T> is a generic container from Spring HATEOAS that includes not only the data but a collection of links.
     @GetMapping("/employees/{id}")
-    EntityModel<Employee> one(@PathVariable Long id) {
+    public EntityModel<Employee> one(@PathVariable Long id) {
         Employee employee = repository.findById(id)
                 .orElseThrow(() -> new EmployeeNotFoundException(id));
         return assembler.toModel(employee);
