@@ -2,6 +2,7 @@ package com.payroll.resources;
 
 import com.payroll.Order;
 import com.payroll.repository.OrderRepository;
+import com.payroll.resources.exceptions.OrderNotFoundException;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.MediaTypes;
@@ -38,7 +39,8 @@ public class OrderController {
 
     @GetMapping("/orders/{id}")
     EntityModel<Order> one(@PathVariable Long id) {
-        Order order = orderRepository.findById(id).orElseThrow(() -> new OrderNotFoundException(id));
+        Order order = orderRepository.findById(id) //
+                .orElseThrow(() -> new OrderNotFoundException(id));
         return assembler.toModel(order);
     }
 

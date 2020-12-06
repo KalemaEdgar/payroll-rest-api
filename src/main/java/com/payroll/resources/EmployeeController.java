@@ -2,7 +2,7 @@ package com.payroll.resources;
 
 import com.payroll.Employee;
 import com.payroll.repository.EmployeeRepository;
-import org.apache.coyote.Response;
+import com.payroll.resources.exceptions.EmployeeNotFoundException;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.IanaLinkRelations;
